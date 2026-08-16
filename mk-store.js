@@ -103,7 +103,7 @@
       action: "criou", old_value: "", new_value: t.title, created_at: t.created_at,
     }));
 
-    return { users, tasks, directory, comments: [], notifications: [], history, session: null, _seq };
+    return { users, tasks, directory, comments: [], attachments: [], notifications: [], history, session: null, _seq };
   }
 
   function initials(name) {
@@ -116,9 +116,16 @@
   function load() {
     try {
       const raw = localStorage.getItem(KEY);
-      if (raw) { const s = JSON.parse(raw); _seq = s._seq || _seq; return s; }
+      if (raw) { const s = JSON.parse(raw); _seq = s._seq || _seq; return migrate(s); }
     } catch (e) { /* estado corrompido — recria */ }
     const s = seed(); s._seq = _seq; persist(s); return s;
+  }
+  // garante coleções novas em estados salvos por versões anteriores
+  function migrate(s) {
+    ["users", "tasks", "directory", "comments", "attachments", "notifications", "history"].forEach((k) => {
+      if (!Array.isArray(s[k])) s[k] = [];
+    });
+    return s;
   }
   function persist(s) {
     (s || state)._seq = _seq;
@@ -245,6 +252,7 @@
     state.tasks = state.tasks.filter((t) => t.id !== id);
     state.history = state.history.filter((h) => h.task_id !== id);
     state.comments = state.comments.filter((c) => c.task_id !== id);
+    state.attachments = state.attachments.filter((a) => a.task_id !== id);
     state.notifications = state.notifications.filter((n) => n.task_id !== id);
     persist();
   }
@@ -265,6 +273,39 @@
     const s = (t.subtasks || []).find((x) => x.id === subId); if (!s) return;
     s.status = s.status === "concluida" ? "pendente" : "concluida";
     t.updated_at = nowISO();
+    persist();
+  }
+
+  /* ---- anexos ---------------------------------------------------------- */
+  // Guardados como coleção separada (espelha uma tabela/bucket de backend).
+  // Hoje o conteúdo (data URL) vive local; ao ligar o backend, troca-se só
+  // onde 'data' é armazenado — a interface e estas funções seguem iguais.
+  const MAX_ATTACH_BYTES = 1.5 * 1024 * 1024; // ~1,5 MB por arquivo (limite local)
+  const attachmentsFor = (taskId) => state.attachments
+    .filter((a) => a.task_id === taskId)
+    .sort((a, b) => a.created_at.localeCompare(b.created_at));
+
+  function addAttachment(task_id, file) {
+    // file: { name, type, size, data(dataURL) }
+    if (file.size > MAX_ATTACH_BYTES) {
+      return { error: "Arquivo acima do limite local de 1,5 MB. Use um arquivo menor até o backend entrar." };
+    }
+    const a = { id: uid("a"), task_id, name: file.name, type: file.type || "",
+      size: file.size, data: file.data, uploaded_by: (state.session || {}).id || null, created_at: nowISO() };
+    state.attachments.push(a);
+    log(task_id, "anexou", "", file.name);
+    const t = taskById(task_id);
+    if (t) notify(t.responsible_id, task_id, "anexo", `Novo anexo em “${t.title}”: ${file.name}.`);
+    try { persist(); } catch (e) {}
+    // localStorage pode estourar cota com muitos anexos base64
+    if (!state.attachments.find((x) => x.id === a.id)) return { error: "Sem espaço local para mais anexos." };
+    return { ok: a };
+  }
+
+  function removeAttachment(task_id, attId) {
+    const a = state.attachments.find((x) => x.id === attId);
+    state.attachments = state.attachments.filter((x) => x.id !== attId);
+    if (a) log(task_id, "removeu anexo", a.name, "");
     persist();
   }
 
@@ -322,9 +363,10 @@
     STATUS_LABEL, PRIORITY_LABEL, ROLE_LABEL,
     persist, reset, initials, daysUntil, deadlineStatus,
     users, activeUsers, userById, userName, tasks, taskById, directory,
-    notifications, unreadCount, historyFor, commentsFor,
+    notifications, unreadCount, historyFor, commentsFor, attachmentsFor,
     metrics, progressByUser, countBy, tasksByResponsible, actorName,
     createTask, updateTask, setStatus, deleteTask, addComment, toggleSubtask,
+    addAttachment, removeAttachment,
     createUser, updateUser, deleteUser, upsertDirectory, deleteDirectory,
     login, logout, session, can, markAllRead,
   };
