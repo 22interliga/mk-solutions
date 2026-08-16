@@ -142,7 +142,10 @@
   const taskById = (id) => state.tasks.find((t) => t.id === id) || null;
   const directory = () => state.directory;
   const notifications = () => state.notifications.slice().sort((a, b) => b.created_at.localeCompare(a.created_at));
-  const unreadCount = () => state.notifications.filter((n) => !n.read).length;
+  const unreadCount = () => {
+    const me = state.session;
+    return state.notifications.filter((n) => !n.read && (!me || n.user_id === me.id)).length;
+  };
   const historyFor = (taskId) => state.history.filter((h) => h.task_id === taskId).sort((a, b) => b.created_at.localeCompare(a.created_at));
   const commentsFor = (taskId) => state.comments.filter((c) => c.task_id === taskId).sort((a, b) => a.created_at.localeCompare(b.created_at));
 
@@ -353,7 +356,9 @@
     return action === "updateStatus" || action === "comment";
   }
   function markAllRead() {
-    state.notifications.forEach((n) => (n.read = true)); persist();
+    const me = state.session;
+    state.notifications.forEach((n) => { if (!me || n.user_id === me.id) n.read = true; });
+    persist();
   }
 
   /* ---- API pública ----------------------------------------------------- */
