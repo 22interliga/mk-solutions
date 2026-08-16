@@ -253,9 +253,10 @@
       U.field("Prazo (data limite)", f.due),
     ]);
 
-    // detalhes extras só na edição: subtarefas, comentários, histórico
+    // detalhes extras só na edição: subtarefas, anexos, comentários, histórico
     if (editing) {
       form.appendChild(subtasksBlock(t));
+      form.appendChild(attachmentsBlock(t));
       form.appendChild(commentsBlock(t));
       form.appendChild(historyBlock(t));
     }
@@ -304,6 +305,80 @@
       } }, "Adicionar")]);
     box.appendChild(addRow);
     return box;
+  }
+
+  function attachmentsBlock(t) {
+    const box = el("div", { class: "sub-block" }, [el("h4", {}, "Anexos")]);
+    const list = el("div", { class: "attach-list" });
+    const items = S.attachmentsFor(t.id);
+    items.forEach((a) => {
+      const isImg = (a.type || "").startsWith("image/");
+      const thumb = isImg
+        ? el("img", { class: "attach-thumb", src: a.data, alt: a.name })
+        : el("span", { class: "attach-ico", text: fileGlyph(a) });
+      const row = el("div", { class: "attach-item" }, [
+        thumb,
+        el("div", { class: "attach-info" }, [
+          el("div", { class: "attach-name", text: a.name, title: a.name }),
+          el("div", { class: "attach-meta muted small", text: `${fmtSize(a.size)} · ${U.fmtDateTime(a.created_at)}` }),
+        ]),
+        el("div", { class: "attach-actions" }, [
+          el("button", { class: "icon-btn", title: "Abrir", onclick: () => openAttachment(a) }, "↗"),
+          el("button", { class: "icon-btn danger", title: "Remover", onclick: () =>
+            U.confirmModal("Remover anexo", `Remover “${a.name}”?`, () => {
+              S.removeAttachment(t.id, a.id);
+              const parent = box.parentNode; parent.replaceChild(attachmentsBlock(t), box);
+            }) }, "\uD83D\uDDD1"),
+        ]),
+      ]);
+      list.appendChild(row);
+    });
+    if (!items.length) list.appendChild(el("p", { class: "muted small", text: "Nenhum anexo. Anexe comprovantes, fotos ou PDFs." }));
+    box.appendChild(list);
+
+    const file = el("input", { type: "file", class: "attach-input", accept: "image/*,application/pdf,.doc,.docx,.xls,.xlsx" });
+    file.addEventListener("change", () => {
+      const f = file.files && file.files[0]; if (!f) return;
+      const reader = new FileReader();
+      reader.onload = () => {
+        const res = S.addAttachment(t.id, { name: f.name, type: f.type, size: f.size, data: reader.result });
+        if (res.error) { U.toast(res.error, "warn"); return; }
+        U.toast("Anexo adicionado");
+        const parent = box.parentNode; parent.replaceChild(attachmentsBlock(t), box);
+      };
+      reader.onerror = () => U.toast("Não foi possível ler o arquivo", "warn");
+      reader.readAsDataURL(f);
+    });
+    const btn = el("button", { class: "btn ghost small", onclick: () => file.click() }, "+ Anexar arquivo");
+    box.appendChild(el("div", { class: "attach-add" }, [btn, file,
+      el("span", { class: "muted xs", text: "Até 1,5 MB por arquivo (local, até o backend entrar)" })]));
+    return box;
+  }
+
+  function fileGlyph(a) {
+    const ty = (a.type || "").toLowerCase(), n = (a.name || "").toLowerCase();
+    if (ty.includes("pdf") || n.endsWith(".pdf")) return "PDF";
+    if (ty.includes("sheet") || n.match(/\.xlsx?$/)) return "XLS";
+    if (ty.includes("word") || n.match(/\.docx?$/)) return "DOC";
+    return "ARQ";
+  }
+  function fmtSize(b) {
+    if (b < 1024) return b + " B";
+    if (b < 1024 * 1024) return (b / 1024).toFixed(0) + " KB";
+    return (b / 1024 / 1024).toFixed(1) + " MB";
+  }
+  function openAttachment(a) {
+    const w = window.open();
+    if (w) {
+      if ((a.type || "").startsWith("image/")) {
+        w.document.write(`<title>${a.name}</title><img src="${a.data}" style="max-width:100%">`);
+      } else {
+        w.location.href = a.data;
+      }
+    } else {
+      const link = el("a", { href: a.data, download: a.name });
+      document.body.appendChild(link); link.click(); link.remove();
+    }
   }
 
   function commentsBlock(t) {
