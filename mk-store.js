@@ -41,7 +41,7 @@
     const users = [
       u("Miqueias", "miqueias@mk-solutions.app", "admin", "Desenvolvimento"),
       u("Misael", "misael@mk-solutions.app", "gestor", "Operacional"),
-      u("Keven", "keven@mk-solutions.app", "colaborador", "Operacional"),
+      u("Keven", "keven@mk-solutions.app", "gestor", "Operacional"),
     ];
     const byName = (n) => (users.find((x) => x.name === n) || {}).id || null;
 
