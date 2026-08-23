@@ -37,9 +37,7 @@
       ]));
     });
     host.appendChild(el("div", { class: "auth-box" }, [
-      el("div", { class: "brand-mark lg" }, [el("span", { class: "brand-dot" }), "MK"]),
-      el("h1", { class: "auth-title", text: "MK-Solutions" }),
-      el("p", { class: "auth-sub", text: "Gestão, distribuição e acompanhamento de tarefas" }),
+      el("div", { class: "mk-login-logo", role: "img", "aria-label": "MK-Solutions" }),
       el("div", { class: "auth-sep", text: "Entrar como" }),
       picker,
       el("p", { class: "auth-note", text: "v1 · seleção de perfil para demonstração. Autenticação real entra em etapa posterior." }),
@@ -53,7 +51,7 @@
 
     const sidebar = el("aside", { class: "sidebar", id: "sidebar" }, [
       el("div", { class: "sb-brand" }, [
-        el("div", { class: "brand-mark" }, [el("span", { class: "brand-dot" }), "MK"]),
+        el("div", { class: "mk-mark" }),
         el("div", { class: "brand-text" }, [
           el("strong", { text: "MK-Solutions" }),
           el("span", { class: "muted xs", text: "Painel operacional" }),
