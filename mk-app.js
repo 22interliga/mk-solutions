@@ -7,6 +7,7 @@
 
   const NAV = [
     { id: "dashboard", label: "Dashboard", icon: "◧", view: "dashboard" },
+    { id: "operacao", label: "Operação", icon: "⬢", view: "operacao" },
     { id: "minhas", label: "Minhas Tarefas", icon: "☑", view: "minhasTarefas" },
     { id: "demandas", label: "Demandas", icon: "▤", view: "tarefas" },
     { id: "fluxograma", label: "Fluxograma", icon: "⇄", view: "fluxograma" },
