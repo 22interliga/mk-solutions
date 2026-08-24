@@ -744,8 +744,28 @@
     return wrap;
   }
 
+  /* ---- Operação (módulo embutido: motoristas, fretes, rastreio ao vivo) ---- */
+  function operacao() {
+    const wrap = el("div", { class: "op-embed" });
+    wrap.appendChild(pageHead(
+      "Operação & Motoristas",
+      "Motoristas, fretes, rastreamento ao vivo, SLA e despesas.",
+      [el("a", { class: "btn sm", href: "operacao/index.html", target: "_blank", rel: "noopener" }, "Abrir em nova aba ↗")]
+    ));
+    wrap.appendChild(el("iframe", {
+      class: "op-frame",
+      src: "operacao/index.html",
+      title: "Módulo Operação",
+      allow: "clipboard-write; geolocation",
+      loading: "lazy",
+      style: "width:100%;height:calc(100dvh - 172px);min-height:560px;border:1px solid var(--border);"
+        + "border-radius:var(--radius);background:#fff;box-shadow:var(--shadow);display:block;",
+    }));
+    return wrap;
+  }
+
   window.MK.views = {
-    dashboard, minhasTarefas, tarefas, kanban, fluxograma, equipe,
+    dashboard, operacao, minhasTarefas, tarefas, kanban, fluxograma, equipe,
     kpis, sla, diretoria, relatorios, notificacoes, config, taskModal,
   };
 })();
