@@ -750,11 +750,11 @@
     wrap.appendChild(pageHead(
       "Operação & Motoristas",
       "Motoristas, fretes, rastreamento ao vivo, SLA e despesas.",
-      [el("a", { class: "btn sm", href: "operacao/index.html", target: "_blank", rel: "noopener" }, "Abrir em nova aba ↗")]
+      [el("a", { class: "btn sm", href: "operacao.html", target: "_blank", rel: "noopener" }, "Abrir em nova aba ↗")]
     ));
     wrap.appendChild(el("iframe", {
       class: "op-frame",
-      src: "operacao/index.html",
+      src: "operacao.html",
       title: "Módulo Operação",
       allow: "clipboard-write; geolocation",
       loading: "lazy",
