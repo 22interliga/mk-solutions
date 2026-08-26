@@ -1,267 +1,132 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#07111f" />
-  <title>MK Solutions | Apresentação Institucional</title>
-  <meta name="description" content="MK Solutions — tecnologia, automação e soluções digitais para empresas que querem crescer com organização, controle e inteligência." />
-  <style>
-    :root{
-      --bg:#07111f;
-      --bg2:#0c1b30;
-      --panel:#101f35;
-      --card:#ffffff;
-      --text:#0f172a;
-      --muted:#667085;
-      --white:#ffffff;
-      --line:rgba(255,255,255,.16);
-      --blue:#2f80ed;
-      --cyan:#20d5ff;
-      --green:#20e6a3;
-      --gold:#f7b731;
-      --shadow:0 24px 80px rgba(0,0,0,.28);
-      --radius:28px;
-    }
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{margin:0;font-family:Inter,Segoe UI,Roboto,Arial,sans-serif;background:linear-gradient(135deg,var(--bg),var(--bg2));color:var(--white)}
-    a{color:inherit;text-decoration:none}
-    .wrap{width:min(1180px,92vw);margin:auto}
-    .nav{position:sticky;top:0;z-index:20;background:rgba(7,17,31,.82);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}
-    .nav-inner{height:76px;display:flex;align-items:center;justify-content:space-between;gap:18px}
-    .brand{display:flex;align-items:center;gap:12px;font-weight:900;letter-spacing:.3px}
-    .logo{width:46px;height:46px;border-radius:16px;background:linear-gradient(135deg,var(--cyan),var(--green));display:grid;place-items:center;box-shadow:0 14px 34px rgba(32,213,255,.28);color:#07111f;font-weight:1000}
-    .brand small{display:block;font-weight:600;color:#a9b8cc;letter-spacing:0}
-    .links{display:flex;align-items:center;gap:18px;color:#dbe7f8;font-size:14px}
-    .btn{border:0;border-radius:999px;padding:13px 18px;font-weight:800;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:8px;transition:.2s;white-space:nowrap}
-    .btn:hover{transform:translateY(-2px)}
-    .btn-primary{background:linear-gradient(135deg,var(--cyan),var(--green));color:#061222;box-shadow:0 18px 42px rgba(32,230,163,.22)}
-    .btn-soft{background:rgba(255,255,255,.1);color:#fff;border:1px solid var(--line)}
-    .hero{position:relative;overflow:hidden;padding:86px 0 58px}
-    .hero:before{content:"";position:absolute;inset:-120px -120px auto auto;width:560px;height:560px;background:radial-gradient(circle,rgba(32,213,255,.32),transparent 60%);pointer-events:none}
-    .hero-grid{display:grid;grid-template-columns:1.06fr .94fr;gap:46px;align-items:center}
-    .eyebrow{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);background:rgba(255,255,255,.08);padding:9px 13px;border-radius:999px;color:#cbe9ff;font-weight:700;font-size:13px}
-    h1{font-size:clamp(40px,6vw,76px);line-height:.98;margin:20px 0 18px;letter-spacing:-2px}
-    .lead{font-size:clamp(18px,2.2vw,23px);line-height:1.45;color:#c8d6ea;margin:0 0 28px;max-width:720px}
-    .hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:26px}
-    .hero-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;max-width:650px}
-    .stat{border:1px solid var(--line);background:rgba(255,255,255,.08);border-radius:22px;padding:18px}
-    .stat b{font-size:28px;color:#fff;display:block}.stat span{font-size:13px;color:#a9b8cc}
-    .device{background:linear-gradient(180deg,rgba(255,255,255,.18),rgba(255,255,255,.06));border:1px solid var(--line);border-radius:36px;padding:18px;box-shadow:var(--shadow)}
-    .screen{background:#f7fafc;color:var(--text);border-radius:26px;padding:22px;min-height:520px;position:relative;overflow:hidden}
-    .screen-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
-    .pill{padding:8px 11px;border-radius:999px;background:#eaf7ff;color:#1465a8;font-weight:800;font-size:12px}
-    .dash-title{font-size:22px;font-weight:900;color:#0c1b30}.dash-sub{color:#667085;font-size:13px;margin-top:4px}
-    .mini-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:18px 0}
-    .mini{background:#fff;border:1px solid #edf1f5;border-radius:20px;padding:16px;box-shadow:0 10px 26px rgba(16,31,53,.07)}
-    .mini strong{font-size:24px;display:block;color:#101828}.mini span{font-size:12px;color:#667085}
-    .bars{display:grid;gap:10px;margin-top:20px}.bar{height:13px;background:#e8eef5;border-radius:99px;overflow:hidden}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--blue),var(--green));border-radius:99px}
-    .floating{position:absolute;right:18px;bottom:18px;background:#0c1b30;color:#fff;border-radius:22px;padding:16px;width:250px;box-shadow:0 18px 42px rgba(7,17,31,.25)}
-    .floating b{display:block;margin-bottom:6px}.floating span{font-size:12px;color:#cbd5e1}
-    section{padding:72px 0}.section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:28px}.section-head h2{font-size:clamp(30px,4vw,46px);line-height:1;margin:0;letter-spacing:-1px}.section-head p{max-width:550px;color:#c8d6ea;line-height:1.55;margin:0}
-    .light{background:#f6f9fc;color:var(--text)}.light .section-head p{color:var(--muted)}.light .section-head h2{color:#0f172a}
-    .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.card{background:#fff;color:var(--text);border:1px solid #e9eef5;border-radius:var(--radius);padding:26px;box-shadow:0 18px 50px rgba(15,23,42,.07)}.dark-card{background:rgba(255,255,255,.08);color:#fff;border:1px solid var(--line)}.card .icon{width:54px;height:54px;border-radius:18px;background:linear-gradient(135deg,var(--cyan),var(--green));display:grid;place-items:center;color:#061222;font-size:24px;margin-bottom:18px}.card h3{margin:0 0 10px;font-size:22px}.card p{margin:0;color:#667085;line-height:1.55}.dark-card p{color:#c8d6ea}
-    .process{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}.step{position:relative;background:rgba(255,255,255,.08);border:1px solid var(--line);border-radius:24px;padding:22px;min-height:170px}.step b{display:inline-grid;place-items:center;width:40px;height:40px;border-radius:14px;background:linear-gradient(135deg,var(--cyan),var(--green));color:#061222;margin-bottom:15px}.step h3{margin:0 0 8px}.step p{margin:0;color:#c8d6ea;font-size:14px;line-height:1.45}
-    .split{display:grid;grid-template-columns:1fr 1fr;gap:26px;align-items:stretch}.panel{border-radius:var(--radius);padding:30px;background:#fff;color:var(--text);box-shadow:0 18px 50px rgba(15,23,42,.08);border:1px solid #e9eef5}.panel h3{font-size:26px;margin:0 0 18px}.list{display:grid;gap:12px}.list div{display:flex;gap:12px;align-items:flex-start;color:#344054}.check{width:24px;height:24px;border-radius:50%;background:#e9fff7;color:#009d6b;display:grid;place-items:center;flex:0 0 24px;font-weight:900}
-    .calculator{background:linear-gradient(135deg,#0c1b30,#122c4c);color:#fff;border-radius:var(--radius);padding:30px;border:1px solid var(--line);box-shadow:var(--shadow)}.calc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.field label{display:block;color:#c8d6ea;font-size:13px;margin-bottom:8px}.field input{width:100%;padding:14px 15px;border-radius:16px;border:1px solid rgba(255,255,255,.22);background:rgba(255,255,255,.1);color:#fff;font-size:16px}.result{margin-top:18px;background:rgba(255,255,255,.1);border:1px solid var(--line);border-radius:22px;padding:20px;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.result strong{font-size:26px;color:var(--green);display:block}.result span{color:#c8d6ea;font-size:13px}
-    .contact{display:grid;grid-template-columns:.9fr 1.1fr;gap:26px}.form{display:grid;gap:12px}.form input,.form textarea,.form select{width:100%;padding:15px;border-radius:16px;border:1px solid #d9e2ec;background:#fff;font:inherit}.form textarea{min-height:110px;resize:vertical}.footer{padding:30px 0;border-top:1px solid var(--line);color:#a9b8cc}.footer-inner{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;align-items:center}
-    .mobile-menu{display:none}.toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%) translateY(30px);background:#101828;color:#fff;padding:13px 18px;border-radius:999px;box-shadow:0 18px 60px rgba(0,0,0,.28);opacity:0;pointer-events:none;transition:.25s;z-index:50}.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
-    @media(max-width:920px){.links{display:none}.mobile-menu{display:inline-flex}.hero-grid,.split,.contact{grid-template-columns:1fr}.hero{padding-top:48px}.screen{min-height:440px}.cards{grid-template-columns:1fr 1fr}.process{grid-template-columns:1fr 1fr}.calc-grid,.result{grid-template-columns:1fr}.section-head{display:block}.section-head p{margin-top:12px}.nav.open .links{display:flex;position:absolute;left:4vw;right:4vw;top:78px;background:#07111f;border:1px solid var(--line);border-radius:24px;padding:18px;flex-direction:column;align-items:stretch}}
-    @media(max-width:640px){.hero-stats,.cards,.process,.mini-grid{grid-template-columns:1fr}h1{font-size:42px}.floating{position:relative;right:auto;bottom:auto;width:auto;margin-top:16px}.screen{min-height:auto}.btn{width:100%}.nav-inner{height:68px}.brand small{display:none}section{padding:52px 0}}
-    @media print{.nav,.hero-actions,.btn,.footer,.toast{display:none!important}body{background:#fff;color:#111}.hero,section{padding:28px 0}.wrap{width:94%}.card,.panel,.calculator{box-shadow:none}.dark-card,.calculator{background:#fff;color:#111;border:1px solid #ddd}.dark-card p,.calculator p,.step p{color:#555}.step{background:#fff;color:#111;border:1px solid #ddd}.lead,.section-head p{color:#444}.screen{border:1px solid #ddd}.hero-grid,.split,.contact{grid-template-columns:1fr 1fr}.cards{grid-template-columns:repeat(3,1fr)}}
-  </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#07111f">
+  <title>MK Solutions • Operação Last Mile</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="styles.css?v=1">
 </head>
 <body>
-  <nav class="nav" id="nav">
-    <div class="wrap nav-inner">
-      <a class="brand" href="#inicio" aria-label="MK Solutions">
-        <span class="logo">MK</span>
-        <span>MK Solutions<small>tecnologia para gestão e crescimento</small></span>
-      </a>
-      <div class="links">
-        <a href="#solucoes">Soluções</a>
-        <a href="#processo">Processo</a>
-        <a href="#resultados">Resultados</a>
-        <a href="#contato">Contato</a>
-        <a class="btn btn-soft" href="operacao.html">Abrir operação</a>
+<div class="app-shell">
+  <aside class="sidebar" id="sidebar">
+    <div class="brand"><div class="brand-mark">MK</div><div><strong>MK Solutions</strong><span>Operação Last Mile</span></div></div>
+    <nav id="nav"></nav>
+    <div class="sidebar-footer">Gestão operacional • apresentação ao vivo • v1.0</div>
+  </aside>
+  <main class="main">
+    <header class="topbar">
+      <button class="icon-btn mobile-only" id="menuBtn" aria-label="Abrir menu">☰</button>
+      <div class="title-wrap"><h1 id="pageTitle">Dashboard</h1><p id="pageSubtitle">Visão geral da operação</p></div>
+      <div class="top-actions">
+        <button class="ghost-btn" id="importBtn">⇧ Importar arquivo operacional</button>
+        <button class="primary-btn" id="newBtn">+ Novo Waybill</button>
       </div>
-      <button class="btn btn-soft mobile-menu" onclick="toggleMenu()">Menu</button>
-    </div>
-  </nav>
+    </header>
+    <section class="content" id="content"></section>
+  </main>
+</div>
+<div class="overlay" id="overlay"></div>
+<div class="toast" id="toast"></div>
 
-  <header class="hero" id="inicio">
-    <div class="wrap hero-grid">
-      <div>
-        <span class="eyebrow">◆ Apresentação institucional</span>
-        <h1>Soluções digitais para empresas que querem controle, velocidade e inteligência.</h1>
-        <p class="lead">A MK Solutions desenvolve projetos, sistemas e automações para organizar operações, reduzir processos manuais e transformar informação em decisão.</p>
-        <div class="hero-actions">
-          <a class="btn btn-primary" href="#contato">Solicitar proposta</a>
-          <button class="btn btn-soft" onclick="window.print()">Gerar PDF</button>
-          <a class="btn btn-soft" href="rastrear.html">Área de rastreio</a>
-        </div>
-        <div class="hero-stats">
-          <div class="stat"><b>360°</b><span>visão completa da operação</span></div>
-          <div class="stat"><b>+IA</b><span>análises e automações inteligentes</span></div>
-          <div class="stat"><b>Web</b><span>acesso por computador e celular</span></div>
-        </div>
-      </div>
-      <div class="device" aria-label="Prévia do sistema">
-        <div class="screen">
-          <div class="screen-top">
-            <div><div class="dash-title">Painel Executivo</div><div class="dash-sub">MK Solutions • visão operacional</div></div>
-            <span class="pill">Online</span>
-          </div>
-          <div class="mini-grid">
-            <div class="mini"><strong>94%</strong><span>processos no prazo</span></div>
-            <div class="mini"><strong>38h</strong><span>economia mensal estimada</span></div>
-            <div class="mini"><strong>12</strong><span>fluxos automatizados</span></div>
-            <div class="mini"><strong>4</strong><span>áreas integradas</span></div>
-          </div>
-          <div class="bars">
-            <div class="bar"><i style="width:92%"></i></div>
-            <div class="bar"><i style="width:74%"></i></div>
-            <div class="bar"><i style="width:86%"></i></div>
-            <div class="bar"><i style="width:64%"></i></div>
-          </div>
-          <div class="floating"><b>Relatório inteligente</b><span>Dados consolidados, alertas e decisões mais rápidas para a gestão.</span></div>
-        </div>
-      </div>
-    </div>
-  </header>
+<dialog id="wbDialog"><form id="wbForm">
+  <div class="dialog-head"><div><h2>Novo Waybill</h2><p>Registrar volume recebido no DS.</p></div><button type="button" class="icon-btn close">✕</button></div>
+  <div class="form-grid">
+    <label>Waybill<input name="waybill" required placeholder="WB000001"></label>
+    <label>Referência / Pedido<input name="referencia" placeholder="PED-0001"></label>
+    <label>Cliente<input name="cliente" required></label>
+    <label>Destinatário<input name="destinatario" required></label>
+    <label>Telefone<input name="telefone"></label>
+    <label>Prazo / SLA<input name="prazo" type="date" required></label>
+    <label>Base<select name="base" id="wbBase" required></select></label>
+    <label>Localidade<input name="localidade" placeholder="Bairro / cidade / região" required></label>
+    <label class="span-2">Endereço de entrega<input name="endereco" required></label>
+    <label>Cidade<input name="cidade" required></label>
+    <label>Volumes<input name="volumes" type="number" min="1" value="1"></label>
+  </div>
+  <div class="dialog-actions"><button type="button" class="ghost-btn close">Cancelar</button><button class="primary-btn">Receber no DS</button></div>
+</form></dialog>
 
-  <section class="light" id="solucoes">
-    <div class="wrap">
-      <div class="section-head"><h2>O que a MK Solutions entrega</h2><p>Projetos sob medida para empresas que precisam digitalizar processos, acompanhar resultados e crescer com estrutura.</p></div>
-      <div class="cards">
-        <article class="card"><div class="icon">▣</div><h3>Sistemas Web</h3><p>Painéis administrativos, portais, cadastros, relatórios e áreas operacionais acessíveis pelo navegador.</p></article>
-        <article class="card"><div class="icon">⚙</div><h3>Automação</h3><p>Redução de tarefas repetitivas com fluxos automatizados, importações, alertas e validações.</p></article>
-        <article class="card"><div class="icon">◈</div><h3>Gestão de Dados</h3><p>Organização de informações em dashboards, filtros, indicadores e relatórios prontos para decisão.</p></article>
-        <article class="card"><div class="icon">⌁</div><h3>Integrações</h3><p>Conexão com planilhas, bancos de dados, APIs, formulários e sistemas já usados pela empresa.</p></article>
-        <article class="card"><div class="icon">✦</div><h3>Inteligência Artificial</h3><p>Recursos de análise, resumo, recomendação e apoio à decisão usando dados do próprio negócio.</p></article>
-        <article class="card"><div class="icon">↗</div><h3>Presença Digital</h3><p>Sites de apresentação, páginas comerciais e experiências profissionais para marca e vendas.</p></article>
-      </div>
-    </div>
-  </section>
+<dialog id="occDialog"><form id="occForm">
+  <input type="hidden" name="waybill">
+  <div class="dialog-head"><div><h2>Registrar ocorrência</h2><p id="occWb"></p></div><button type="button" class="icon-btn close-occ">✕</button></div>
+  <div class="form-grid">
+    <label>Tipo<select name="tipo"><option>Destinatário ausente</option><option>Endereço incorreto</option><option>Endereço não localizado</option><option>Recusa do destinatário</option><option>Estabelecimento fechado</option><option>Pacote avariado</option><option>Pacote não localizado</option><option>Área de risco</option><option>Outro</option></select></label>
+    <label>Próxima ação<select name="acao"><option>Nova tentativa</option><option>Devolução</option><option>Análise operacional</option></select></label>
+    <label class="span-2">Observação<textarea name="obs" rows="3"></textarea></label>
+  </div>
+  <div class="dialog-actions"><button type="button" class="ghost-btn close-occ">Cancelar</button><button class="primary-btn">Salvar ocorrência</button></div>
+</form></dialog>
 
-  <section id="processo">
-    <div class="wrap">
-      <div class="section-head"><h2>Da ideia ao sistema funcionando</h2><p>Uma metodologia direta, com etapas claras para tirar o projeto do papel e colocar em operação.</p></div>
-      <div class="process">
-        <div class="step"><b>1</b><h3>Diagnóstico</h3><p>Entendimento do problema, rotinas, planilhas, usuários e objetivos.</p></div>
-        <div class="step"><b>2</b><h3>Protótipo</h3><p>Criação das primeiras telas navegáveis para validar o fluxo.</p></div>
-        <div class="step"><b>3</b><h3>Sistema</h3><p>Construção da base funcional com cadastros, filtros e relatórios.</p></div>
-        <div class="step"><b>4</b><h3>Dados</h3><p>Conexão com banco, permissões, importações e segurança.</p></div>
-        <div class="step"><b>5</b><h3>Evolução</h3><p>Melhorias contínuas, automações, IA e novas integrações.</p></div>
-      </div>
-    </div>
-  </section>
+<dialog id="driverDialog"><form id="driverForm">
+  <input type="hidden" name="id">
+  <div class="dialog-head"><div><h2>Cadastro de motorista</h2><p>Dados operacionais e financeiros.</p></div><button type="button" class="icon-btn close-driver">✕</button></div>
+  <div class="form-grid">
+    <label>Nome completo<input name="nome" required></label>
+    <label>Telefone<input name="telefone" required></label>
+    <label>Data de nascimento<input name="nascimento" type="date" required></label>
+    <label>Rota desejada<input name="rota" placeholder="Ex.: Região Norte"></label>
+    <label>Valor por pacote (R$)<input name="valorPacote" type="number" step="0.01" min="0" required></label>
+    <label>Base atendida<select name="base" id="driverBase" required></select></label>
+    <label>Banco<input name="banco"></label>
+    <label>Agência<input name="agencia"></label>
+    <label>Conta<input name="conta"></label>
+    <label>Chave PIX<input name="pix"></label>
+    <label>Status<select name="status"><option>Ativo</option><option>Inativo</option><option>Bloqueado</option></select></label>
+    <label class="span-2">Observações<textarea name="obs" rows="2"></textarea></label>
+  </div>
+  <div class="dialog-actions"><button type="button" class="ghost-btn close-driver">Cancelar</button><button class="primary-btn">Salvar motorista</button></div>
+</form></dialog>
 
-  <section class="light" id="resultados">
-    <div class="wrap split">
-      <div class="panel">
-        <h3>Resultados esperados</h3>
-        <div class="list">
-          <div><span class="check">✓</span><span>Menos controle manual em WhatsApp e planilhas soltas.</span></div>
-          <div><span class="check">✓</span><span>Informações centralizadas para donos, operação e financeiro.</span></div>
-          <div><span class="check">✓</span><span>Relatórios mais rápidos e com menor risco de erro.</span></div>
-          <div><span class="check">✓</span><span>Fluxos mais claros para equipe, clientes e gestores.</span></div>
-          <div><span class="check">✓</span><span>Base preparada para crescimento, IA e integrações futuras.</span></div>
-        </div>
-      </div>
-      <div class="calculator">
-        <h3 style="margin:0 0 10px;font-size:26px">Simulador de ganho operacional</h3>
-        <p style="color:#c8d6ea;margin:0 0 20px">Estime o impacto de reduzir tarefas manuais no mês.</p>
-        <div class="calc-grid">
-          <div class="field"><label>Horas manuais por semana</label><input id="horas" type="number" value="12" min="0"></div>
-          <div class="field"><label>Redução esperada (%)</label><input id="reducao" type="number" value="55" min="0" max="100"></div>
-          <div class="field"><label>Custo hora médio (R$)</label><input id="custo" type="number" value="35" min="0"></div>
-        </div>
-        <div class="result">
-          <div><strong id="hMes">26h</strong><span>horas economizadas/mês</span></div>
-          <div><strong id="rMes">R$ 924</strong><span>economia estimada/mês</span></div>
-          <div><strong id="rAno">R$ 11.088</strong><span>economia estimada/ano</span></div>
-        </div>
-      </div>
-    </div>
-  </section>
+<dialog id="expenseDialog"><form id="expenseForm">
+  <div class="dialog-head"><div><h2>Nova despesa / pagamento</h2><p>Registre os dados da despesa e da transação bancária.</p></div><button type="button" class="icon-btn close-expense">✕</button></div>
+  <div class="form-grid">
+    <label class="span-2">Descrição da despesa<input name="descricao" required></label>
+    <label>Valor (R$)<input name="valor" type="number" min="0" step="0.01" required></label>
+    <label>Data<input name="data" type="date" required></label>
+    <label>Horário<input name="horario" type="time"></label>
+    <label>Forma de pagamento<select name="pagamento"><option>PIX</option><option>Dinheiro</option><option>Cartão de débito</option><option>Cartão de crédito</option><option>Boleto</option><option>Transferência</option><option>Outro</option></select></label>
+    <label>Status do pagamento<select name="statusPagamento"><option>Aguardando aprovação</option><option>Pago</option><option>Agendado</option><option>Cancelado</option></select></label>
+    <label>Categoria<select name="categoria"><option>Combustível</option><option>Manutenção</option><option>Alimentação</option><option>Pedágio</option><option>Administrativo</option><option>Aluguel</option><option>Pagamento de motorista</option><option>Outros</option></select></label>
+    <label>Base<select name="base" id="expenseBase" required></select></label>
+    <label class="span-2 section-label">Quem vai receber</label>
+    <label>Nome / Beneficiário<input name="beneficiario"></label>
+    <label>CPF/CNPJ<input name="documento"></label>
+    <label>Instituição / Banco<input name="instituicao"></label>
+    <label>Agência<input name="agencia"></label>
+    <label>Conta<input name="conta"></label>
+    <label>Chave PIX<input name="pix"></label>
+    <label class="span-2 section-label">Quem vai pagar</label>
+    <label>Pagador<input name="pagador"></label>
+    <label>Responsável pelo lançamento<input name="responsavel"></label>
+    <label class="span-2">Observações<textarea name="obs" rows="2"></textarea></label>
+  </div>
+  <div class="dialog-actions"><button type="button" class="ghost-btn close-expense">Cancelar</button><button class="primary-btn">Salvar despesa</button></div>
+</form></dialog>
 
-  <section>
-    <div class="wrap">
-      <div class="section-head"><h2>Áreas que podem ser atendidas</h2><p>A MK Solutions pode estruturar soluções para diferentes frentes de negócio, mantendo a identidade e a operação da empresa organizada.</p></div>
-      <div class="cards">
-        <article class="card dark-card"><div class="icon">📦</div><h3>Logística</h3><p>Controle de entregas, rotas, status, despesas, produtividade e relatórios.</p></article>
-        <article class="card dark-card"><div class="icon">💼</div><h3>Administrativo</h3><p>Cadastros, documentos, permissões, demandas e acompanhamento de tarefas.</p></article>
-        <article class="card dark-card"><div class="icon">💳</div><h3>Financeiro</h3><p>Despesas, receitas, repasses, fechamento, comprovantes e indicadores.</p></article>
-      </div>
-    </div>
-  </section>
+<dialog id="userDialog"><form id="userForm">
+  <div class="dialog-head"><div><h2>Novo usuário</h2><p>Estrutura de acesso administrativo.</p></div><button type="button" class="icon-btn close-user">✕</button></div>
+  <div class="form-grid">
+    <label>Nome<input name="nome" required></label>
+    <label>E-mail<input name="email" type="email" required></label>
+    <label>Perfil<select name="perfil"><option>Super Admin</option><option>Dono / Admin</option><option>Operação</option><option>Financeiro</option><option>Consulta</option></select></label>
+    <label>Base<select name="base" id="userBase"><option value="Todas">Todas as bases</option></select></label>
+    <label>Status<select name="status"><option>Ativo</option><option>Inativo</option></select></label>
+  </div>
+  <div class="info-box">Versão de apresentação: o cadastro é local ao navegador. Login seguro e sincronização entre dispositivos entram na etapa de banco/autenticação.</div>
+  <div class="dialog-actions"><button type="button" class="ghost-btn close-user">Cancelar</button><button class="primary-btn">Salvar usuário</button></div>
+</form></dialog>
 
-  <section class="light" id="contato">
-    <div class="wrap contact">
-      <div class="panel">
-        <h3>Vamos estruturar seu próximo sistema?</h3>
-        <p style="color:#667085;line-height:1.6;margin-top:0">Preencha os dados e gere uma mensagem comercial pronta. Esta versão salva os contatos localmente no navegador para demonstração.</p>
-        <div class="list">
-          <div><span class="check">✓</span><span>Projeto de apresentação online no GitHub Pages.</span></div>
-          <div><span class="check">✓</span><span>Layout responsivo para celular e computador.</span></div>
-          <div><span class="check">✓</span><span>Botão para imprimir ou salvar em PDF.</span></div>
-        </div>
-      </div>
-      <div class="panel">
-        <form class="form" id="leadForm">
-          <input name="nome" placeholder="Nome" required>
-          <input name="telefone" placeholder="Telefone / WhatsApp" required>
-          <select name="interesse"><option>Sistema web</option><option>Automação</option><option>Dashboard</option><option>Site de apresentação</option><option>Integração com IA</option></select>
-          <textarea name="mensagem" placeholder="Descreva brevemente o que você precisa"></textarea>
-          <button class="btn btn-primary" type="submit">Gerar contato</button>
-          <button class="btn btn-soft" type="button" style="color:#0f172a;border-color:#d9e2ec;background:#f8fafc" onclick="copyPresentation()">Copiar resumo da apresentação</button>
-        </form>
-      </div>
-    </div>
-  </section>
+<dialog id="baseDialog"><form id="baseForm">
+  <input type="hidden" name="id">
+  <div class="dialog-head"><div><h2>Base operacional</h2><p>Cadastre ou edite uma base.</p></div><button type="button" class="icon-btn close-base">✕</button></div>
+  <div class="form-grid"><label>Nome da base<input name="nome" required></label><label>Localidade<input name="localidade" required></label><label>Status<select name="status"><option>Ativa</option><option>Inativa</option></select></label></div>
+  <div class="dialog-actions"><button type="button" class="ghost-btn close-base">Cancelar</button><button class="primary-btn">Salvar base</button></div>
+</form></dialog>
 
-  <footer class="footer">
-    <div class="wrap footer-inner">
-      <div>© <span id="year"></span> MK Solutions — Tecnologia, automação e soluções digitais.</div>
-      <div>Projeto de apresentação • v1.0</div>
-    </div>
-  </footer>
-  <div class="toast" id="toast">Pronto</div>
-
-  <script>
-    const BRL = new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL'});
-    const $ = (id)=>document.getElementById(id);
-    $('year').textContent = new Date().getFullYear();
-    function toggleMenu(){ document.getElementById('nav').classList.toggle('open'); }
-    function toast(msg){ const t=$('toast'); t.textContent=msg; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),2400); }
-    function calc(){
-      const horas = Number($('horas').value||0);
-      const reducao = Number($('reducao').value||0)/100;
-      const custo = Number($('custo').value||0);
-      const hMes = horas*4.2*reducao;
-      const rMes = hMes*custo;
-      $('hMes').textContent = Math.round(hMes)+'h';
-      $('rMes').textContent = BRL.format(rMes);
-      $('rAno').textContent = BRL.format(rMes*12);
-    }
-    ['horas','reducao','custo'].forEach(id=>$(id).addEventListener('input',calc)); calc();
-    document.getElementById('leadForm').addEventListener('submit',function(e){
-      e.preventDefault();
-      const data = Object.fromEntries(new FormData(e.target).entries());
-      const leads = JSON.parse(localStorage.getItem('mk_leads')||'[]');
-      leads.push({...data, criadoEm:new Date().toISOString()});
-      localStorage.setItem('mk_leads',JSON.stringify(leads));
-      const texto = `Olá, sou ${data.nome}. Tenho interesse em ${data.interesse}. Telefone: ${data.telefone}. ${data.mensagem||''}`;
-      navigator.clipboard?.writeText(texto);
-      toast('Contato salvo e mensagem copiada.');
-      e.target.reset();
-    });
-    function copyPresentation(){
-      const text = 'MK Solutions: tecnologia, automação e soluções digitais para empresas que precisam organizar processos, reduzir tarefas manuais, centralizar dados, criar dashboards, integrar sistemas e evoluir com inteligência artificial.';
-      navigator.clipboard?.writeText(text); toast('Resumo copiado.');
-    }
-  </script>
+<input id="fileInput" type="file" accept=".csv,.xls,.xlsx,text/csv,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" hidden>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script src="app.js?v=1"></script>
 </body>
 </html>
