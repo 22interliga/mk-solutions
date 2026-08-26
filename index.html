@@ -2,25 +2,266 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="theme-color" content="#0E1826" />
-  <link rel="icon" type="image/png" href="data:image/png;base64,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" />
-  <link rel="apple-touch-icon" href="data:image/png;base64,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" />
-  <title>MK-Solutions · Gestão de Tarefas</title>
-  <meta name="description" content="MK-Solutions — plataforma de gestão, distribuição e acompanhamento de tarefas operacionais." />
-
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="mk-styles.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#07111f" />
+  <title>MK Solutions | Apresentação Institucional</title>
+  <meta name="description" content="MK Solutions — tecnologia, automação e soluções digitais para empresas que querem crescer com organização, controle e inteligência." />
+  <style>
+    :root{
+      --bg:#07111f;
+      --bg2:#0c1b30;
+      --panel:#101f35;
+      --card:#ffffff;
+      --text:#0f172a;
+      --muted:#667085;
+      --white:#ffffff;
+      --line:rgba(255,255,255,.16);
+      --blue:#2f80ed;
+      --cyan:#20d5ff;
+      --green:#20e6a3;
+      --gold:#f7b731;
+      --shadow:0 24px 80px rgba(0,0,0,.28);
+      --radius:28px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;font-family:Inter,Segoe UI,Roboto,Arial,sans-serif;background:linear-gradient(135deg,var(--bg),var(--bg2));color:var(--white)}
+    a{color:inherit;text-decoration:none}
+    .wrap{width:min(1180px,92vw);margin:auto}
+    .nav{position:sticky;top:0;z-index:20;background:rgba(7,17,31,.82);backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}
+    .nav-inner{height:76px;display:flex;align-items:center;justify-content:space-between;gap:18px}
+    .brand{display:flex;align-items:center;gap:12px;font-weight:900;letter-spacing:.3px}
+    .logo{width:46px;height:46px;border-radius:16px;background:linear-gradient(135deg,var(--cyan),var(--green));display:grid;place-items:center;box-shadow:0 14px 34px rgba(32,213,255,.28);color:#07111f;font-weight:1000}
+    .brand small{display:block;font-weight:600;color:#a9b8cc;letter-spacing:0}
+    .links{display:flex;align-items:center;gap:18px;color:#dbe7f8;font-size:14px}
+    .btn{border:0;border-radius:999px;padding:13px 18px;font-weight:800;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:8px;transition:.2s;white-space:nowrap}
+    .btn:hover{transform:translateY(-2px)}
+    .btn-primary{background:linear-gradient(135deg,var(--cyan),var(--green));color:#061222;box-shadow:0 18px 42px rgba(32,230,163,.22)}
+    .btn-soft{background:rgba(255,255,255,.1);color:#fff;border:1px solid var(--line)}
+    .hero{position:relative;overflow:hidden;padding:86px 0 58px}
+    .hero:before{content:"";position:absolute;inset:-120px -120px auto auto;width:560px;height:560px;background:radial-gradient(circle,rgba(32,213,255,.32),transparent 60%);pointer-events:none}
+    .hero-grid{display:grid;grid-template-columns:1.06fr .94fr;gap:46px;align-items:center}
+    .eyebrow{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);background:rgba(255,255,255,.08);padding:9px 13px;border-radius:999px;color:#cbe9ff;font-weight:700;font-size:13px}
+    h1{font-size:clamp(40px,6vw,76px);line-height:.98;margin:20px 0 18px;letter-spacing:-2px}
+    .lead{font-size:clamp(18px,2.2vw,23px);line-height:1.45;color:#c8d6ea;margin:0 0 28px;max-width:720px}
+    .hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:26px}
+    .hero-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;max-width:650px}
+    .stat{border:1px solid var(--line);background:rgba(255,255,255,.08);border-radius:22px;padding:18px}
+    .stat b{font-size:28px;color:#fff;display:block}.stat span{font-size:13px;color:#a9b8cc}
+    .device{background:linear-gradient(180deg,rgba(255,255,255,.18),rgba(255,255,255,.06));border:1px solid var(--line);border-radius:36px;padding:18px;box-shadow:var(--shadow)}
+    .screen{background:#f7fafc;color:var(--text);border-radius:26px;padding:22px;min-height:520px;position:relative;overflow:hidden}
+    .screen-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
+    .pill{padding:8px 11px;border-radius:999px;background:#eaf7ff;color:#1465a8;font-weight:800;font-size:12px}
+    .dash-title{font-size:22px;font-weight:900;color:#0c1b30}.dash-sub{color:#667085;font-size:13px;margin-top:4px}
+    .mini-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:18px 0}
+    .mini{background:#fff;border:1px solid #edf1f5;border-radius:20px;padding:16px;box-shadow:0 10px 26px rgba(16,31,53,.07)}
+    .mini strong{font-size:24px;display:block;color:#101828}.mini span{font-size:12px;color:#667085}
+    .bars{display:grid;gap:10px;margin-top:20px}.bar{height:13px;background:#e8eef5;border-radius:99px;overflow:hidden}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--blue),var(--green));border-radius:99px}
+    .floating{position:absolute;right:18px;bottom:18px;background:#0c1b30;color:#fff;border-radius:22px;padding:16px;width:250px;box-shadow:0 18px 42px rgba(7,17,31,.25)}
+    .floating b{display:block;margin-bottom:6px}.floating span{font-size:12px;color:#cbd5e1}
+    section{padding:72px 0}.section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:28px}.section-head h2{font-size:clamp(30px,4vw,46px);line-height:1;margin:0;letter-spacing:-1px}.section-head p{max-width:550px;color:#c8d6ea;line-height:1.55;margin:0}
+    .light{background:#f6f9fc;color:var(--text)}.light .section-head p{color:var(--muted)}.light .section-head h2{color:#0f172a}
+    .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.card{background:#fff;color:var(--text);border:1px solid #e9eef5;border-radius:var(--radius);padding:26px;box-shadow:0 18px 50px rgba(15,23,42,.07)}.dark-card{background:rgba(255,255,255,.08);color:#fff;border:1px solid var(--line)}.card .icon{width:54px;height:54px;border-radius:18px;background:linear-gradient(135deg,var(--cyan),var(--green));display:grid;place-items:center;color:#061222;font-size:24px;margin-bottom:18px}.card h3{margin:0 0 10px;font-size:22px}.card p{margin:0;color:#667085;line-height:1.55}.dark-card p{color:#c8d6ea}
+    .process{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}.step{position:relative;background:rgba(255,255,255,.08);border:1px solid var(--line);border-radius:24px;padding:22px;min-height:170px}.step b{display:inline-grid;place-items:center;width:40px;height:40px;border-radius:14px;background:linear-gradient(135deg,var(--cyan),var(--green));color:#061222;margin-bottom:15px}.step h3{margin:0 0 8px}.step p{margin:0;color:#c8d6ea;font-size:14px;line-height:1.45}
+    .split{display:grid;grid-template-columns:1fr 1fr;gap:26px;align-items:stretch}.panel{border-radius:var(--radius);padding:30px;background:#fff;color:var(--text);box-shadow:0 18px 50px rgba(15,23,42,.08);border:1px solid #e9eef5}.panel h3{font-size:26px;margin:0 0 18px}.list{display:grid;gap:12px}.list div{display:flex;gap:12px;align-items:flex-start;color:#344054}.check{width:24px;height:24px;border-radius:50%;background:#e9fff7;color:#009d6b;display:grid;place-items:center;flex:0 0 24px;font-weight:900}
+    .calculator{background:linear-gradient(135deg,#0c1b30,#122c4c);color:#fff;border-radius:var(--radius);padding:30px;border:1px solid var(--line);box-shadow:var(--shadow)}.calc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.field label{display:block;color:#c8d6ea;font-size:13px;margin-bottom:8px}.field input{width:100%;padding:14px 15px;border-radius:16px;border:1px solid rgba(255,255,255,.22);background:rgba(255,255,255,.1);color:#fff;font-size:16px}.result{margin-top:18px;background:rgba(255,255,255,.1);border:1px solid var(--line);border-radius:22px;padding:20px;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.result strong{font-size:26px;color:var(--green);display:block}.result span{color:#c8d6ea;font-size:13px}
+    .contact{display:grid;grid-template-columns:.9fr 1.1fr;gap:26px}.form{display:grid;gap:12px}.form input,.form textarea,.form select{width:100%;padding:15px;border-radius:16px;border:1px solid #d9e2ec;background:#fff;font:inherit}.form textarea{min-height:110px;resize:vertical}.footer{padding:30px 0;border-top:1px solid var(--line);color:#a9b8cc}.footer-inner{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;align-items:center}
+    .mobile-menu{display:none}.toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%) translateY(30px);background:#101828;color:#fff;padding:13px 18px;border-radius:999px;box-shadow:0 18px 60px rgba(0,0,0,.28);opacity:0;pointer-events:none;transition:.25s;z-index:50}.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+    @media(max-width:920px){.links{display:none}.mobile-menu{display:inline-flex}.hero-grid,.split,.contact{grid-template-columns:1fr}.hero{padding-top:48px}.screen{min-height:440px}.cards{grid-template-columns:1fr 1fr}.process{grid-template-columns:1fr 1fr}.calc-grid,.result{grid-template-columns:1fr}.section-head{display:block}.section-head p{margin-top:12px}.nav.open .links{display:flex;position:absolute;left:4vw;right:4vw;top:78px;background:#07111f;border:1px solid var(--line);border-radius:24px;padding:18px;flex-direction:column;align-items:stretch}}
+    @media(max-width:640px){.hero-stats,.cards,.process,.mini-grid{grid-template-columns:1fr}h1{font-size:42px}.floating{position:relative;right:auto;bottom:auto;width:auto;margin-top:16px}.screen{min-height:auto}.btn{width:100%}.nav-inner{height:68px}.brand small{display:none}section{padding:52px 0}}
+    @media print{.nav,.hero-actions,.btn,.footer,.toast{display:none!important}body{background:#fff;color:#111}.hero,section{padding:28px 0}.wrap{width:94%}.card,.panel,.calculator{box-shadow:none}.dark-card,.calculator{background:#fff;color:#111;border:1px solid #ddd}.dark-card p,.calculator p,.step p{color:#555}.step{background:#fff;color:#111;border:1px solid #ddd}.lead,.section-head p{color:#444}.screen{border:1px solid #ddd}.hero-grid,.split,.contact{grid-template-columns:1fr 1fr}.cards{grid-template-columns:repeat(3,1fr)}}
+  </style>
 </head>
 <body>
-  <div id="app"><div class="empty">Carregando MK-Solutions…</div></div>
+  <nav class="nav" id="nav">
+    <div class="wrap nav-inner">
+      <a class="brand" href="#inicio" aria-label="MK Solutions">
+        <span class="logo">MK</span>
+        <span>MK Solutions<small>tecnologia para gestão e crescimento</small></span>
+      </a>
+      <div class="links">
+        <a href="#solucoes">Soluções</a>
+        <a href="#processo">Processo</a>
+        <a href="#resultados">Resultados</a>
+        <a href="#contato">Contato</a>
+        <a class="btn btn-soft" href="operacao.html">Abrir operação</a>
+      </div>
+      <button class="btn btn-soft mobile-menu" onclick="toggleMenu()">Menu</button>
+    </div>
+  </nav>
 
-  <!-- Ordem de carga: dados → componentes → telas → app -->
-  <script src="mk-store.js"></script>
-  <script src="mk-ui.js"></script>
-  <script src="mk-views.js"></script>
- <script src="mk-app.js"></script>
+  <header class="hero" id="inicio">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow">◆ Apresentação institucional</span>
+        <h1>Soluções digitais para empresas que querem controle, velocidade e inteligência.</h1>
+        <p class="lead">A MK Solutions desenvolve projetos, sistemas e automações para organizar operações, reduzir processos manuais e transformar informação em decisão.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#contato">Solicitar proposta</a>
+          <button class="btn btn-soft" onclick="window.print()">Gerar PDF</button>
+          <a class="btn btn-soft" href="rastrear.html">Área de rastreio</a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat"><b>360°</b><span>visão completa da operação</span></div>
+          <div class="stat"><b>+IA</b><span>análises e automações inteligentes</span></div>
+          <div class="stat"><b>Web</b><span>acesso por computador e celular</span></div>
+        </div>
+      </div>
+      <div class="device" aria-label="Prévia do sistema">
+        <div class="screen">
+          <div class="screen-top">
+            <div><div class="dash-title">Painel Executivo</div><div class="dash-sub">MK Solutions • visão operacional</div></div>
+            <span class="pill">Online</span>
+          </div>
+          <div class="mini-grid">
+            <div class="mini"><strong>94%</strong><span>processos no prazo</span></div>
+            <div class="mini"><strong>38h</strong><span>economia mensal estimada</span></div>
+            <div class="mini"><strong>12</strong><span>fluxos automatizados</span></div>
+            <div class="mini"><strong>4</strong><span>áreas integradas</span></div>
+          </div>
+          <div class="bars">
+            <div class="bar"><i style="width:92%"></i></div>
+            <div class="bar"><i style="width:74%"></i></div>
+            <div class="bar"><i style="width:86%"></i></div>
+            <div class="bar"><i style="width:64%"></i></div>
+          </div>
+          <div class="floating"><b>Relatório inteligente</b><span>Dados consolidados, alertas e decisões mais rápidas para a gestão.</span></div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="light" id="solucoes">
+    <div class="wrap">
+      <div class="section-head"><h2>O que a MK Solutions entrega</h2><p>Projetos sob medida para empresas que precisam digitalizar processos, acompanhar resultados e crescer com estrutura.</p></div>
+      <div class="cards">
+        <article class="card"><div class="icon">▣</div><h3>Sistemas Web</h3><p>Painéis administrativos, portais, cadastros, relatórios e áreas operacionais acessíveis pelo navegador.</p></article>
+        <article class="card"><div class="icon">⚙</div><h3>Automação</h3><p>Redução de tarefas repetitivas com fluxos automatizados, importações, alertas e validações.</p></article>
+        <article class="card"><div class="icon">◈</div><h3>Gestão de Dados</h3><p>Organização de informações em dashboards, filtros, indicadores e relatórios prontos para decisão.</p></article>
+        <article class="card"><div class="icon">⌁</div><h3>Integrações</h3><p>Conexão com planilhas, bancos de dados, APIs, formulários e sistemas já usados pela empresa.</p></article>
+        <article class="card"><div class="icon">✦</div><h3>Inteligência Artificial</h3><p>Recursos de análise, resumo, recomendação e apoio à decisão usando dados do próprio negócio.</p></article>
+        <article class="card"><div class="icon">↗</div><h3>Presença Digital</h3><p>Sites de apresentação, páginas comerciais e experiências profissionais para marca e vendas.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section id="processo">
+    <div class="wrap">
+      <div class="section-head"><h2>Da ideia ao sistema funcionando</h2><p>Uma metodologia direta, com etapas claras para tirar o projeto do papel e colocar em operação.</p></div>
+      <div class="process">
+        <div class="step"><b>1</b><h3>Diagnóstico</h3><p>Entendimento do problema, rotinas, planilhas, usuários e objetivos.</p></div>
+        <div class="step"><b>2</b><h3>Protótipo</h3><p>Criação das primeiras telas navegáveis para validar o fluxo.</p></div>
+        <div class="step"><b>3</b><h3>Sistema</h3><p>Construção da base funcional com cadastros, filtros e relatórios.</p></div>
+        <div class="step"><b>4</b><h3>Dados</h3><p>Conexão com banco, permissões, importações e segurança.</p></div>
+        <div class="step"><b>5</b><h3>Evolução</h3><p>Melhorias contínuas, automações, IA e novas integrações.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="light" id="resultados">
+    <div class="wrap split">
+      <div class="panel">
+        <h3>Resultados esperados</h3>
+        <div class="list">
+          <div><span class="check">✓</span><span>Menos controle manual em WhatsApp e planilhas soltas.</span></div>
+          <div><span class="check">✓</span><span>Informações centralizadas para donos, operação e financeiro.</span></div>
+          <div><span class="check">✓</span><span>Relatórios mais rápidos e com menor risco de erro.</span></div>
+          <div><span class="check">✓</span><span>Fluxos mais claros para equipe, clientes e gestores.</span></div>
+          <div><span class="check">✓</span><span>Base preparada para crescimento, IA e integrações futuras.</span></div>
+        </div>
+      </div>
+      <div class="calculator">
+        <h3 style="margin:0 0 10px;font-size:26px">Simulador de ganho operacional</h3>
+        <p style="color:#c8d6ea;margin:0 0 20px">Estime o impacto de reduzir tarefas manuais no mês.</p>
+        <div class="calc-grid">
+          <div class="field"><label>Horas manuais por semana</label><input id="horas" type="number" value="12" min="0"></div>
+          <div class="field"><label>Redução esperada (%)</label><input id="reducao" type="number" value="55" min="0" max="100"></div>
+          <div class="field"><label>Custo hora médio (R$)</label><input id="custo" type="number" value="35" min="0"></div>
+        </div>
+        <div class="result">
+          <div><strong id="hMes">26h</strong><span>horas economizadas/mês</span></div>
+          <div><strong id="rMes">R$ 924</strong><span>economia estimada/mês</span></div>
+          <div><strong id="rAno">R$ 11.088</strong><span>economia estimada/ano</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="section-head"><h2>Áreas que podem ser atendidas</h2><p>A MK Solutions pode estruturar soluções para diferentes frentes de negócio, mantendo a identidade e a operação da empresa organizada.</p></div>
+      <div class="cards">
+        <article class="card dark-card"><div class="icon">📦</div><h3>Logística</h3><p>Controle de entregas, rotas, status, despesas, produtividade e relatórios.</p></article>
+        <article class="card dark-card"><div class="icon">💼</div><h3>Administrativo</h3><p>Cadastros, documentos, permissões, demandas e acompanhamento de tarefas.</p></article>
+        <article class="card dark-card"><div class="icon">💳</div><h3>Financeiro</h3><p>Despesas, receitas, repasses, fechamento, comprovantes e indicadores.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="light" id="contato">
+    <div class="wrap contact">
+      <div class="panel">
+        <h3>Vamos estruturar seu próximo sistema?</h3>
+        <p style="color:#667085;line-height:1.6;margin-top:0">Preencha os dados e gere uma mensagem comercial pronta. Esta versão salva os contatos localmente no navegador para demonstração.</p>
+        <div class="list">
+          <div><span class="check">✓</span><span>Projeto de apresentação online no GitHub Pages.</span></div>
+          <div><span class="check">✓</span><span>Layout responsivo para celular e computador.</span></div>
+          <div><span class="check">✓</span><span>Botão para imprimir ou salvar em PDF.</span></div>
+        </div>
+      </div>
+      <div class="panel">
+        <form class="form" id="leadForm">
+          <input name="nome" placeholder="Nome" required>
+          <input name="telefone" placeholder="Telefone / WhatsApp" required>
+          <select name="interesse"><option>Sistema web</option><option>Automação</option><option>Dashboard</option><option>Site de apresentação</option><option>Integração com IA</option></select>
+          <textarea name="mensagem" placeholder="Descreva brevemente o que você precisa"></textarea>
+          <button class="btn btn-primary" type="submit">Gerar contato</button>
+          <button class="btn btn-soft" type="button" style="color:#0f172a;border-color:#d9e2ec;background:#f8fafc" onclick="copyPresentation()">Copiar resumo da apresentação</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="wrap footer-inner">
+      <div>© <span id="year"></span> MK Solutions — Tecnologia, automação e soluções digitais.</div>
+      <div>Projeto de apresentação • v1.0</div>
+    </div>
+  </footer>
+  <div class="toast" id="toast">Pronto</div>
+
+  <script>
+    const BRL = new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL'});
+    const $ = (id)=>document.getElementById(id);
+    $('year').textContent = new Date().getFullYear();
+    function toggleMenu(){ document.getElementById('nav').classList.toggle('open'); }
+    function toast(msg){ const t=$('toast'); t.textContent=msg; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),2400); }
+    function calc(){
+      const horas = Number($('horas').value||0);
+      const reducao = Number($('reducao').value||0)/100;
+      const custo = Number($('custo').value||0);
+      const hMes = horas*4.2*reducao;
+      const rMes = hMes*custo;
+      $('hMes').textContent = Math.round(hMes)+'h';
+      $('rMes').textContent = BRL.format(rMes);
+      $('rAno').textContent = BRL.format(rMes*12);
+    }
+    ['horas','reducao','custo'].forEach(id=>$(id).addEventListener('input',calc)); calc();
+    document.getElementById('leadForm').addEventListener('submit',function(e){
+      e.preventDefault();
+      const data = Object.fromEntries(new FormData(e.target).entries());
+      const leads = JSON.parse(localStorage.getItem('mk_leads')||'[]');
+      leads.push({...data, criadoEm:new Date().toISOString()});
+      localStorage.setItem('mk_leads',JSON.stringify(leads));
+      const texto = `Olá, sou ${data.nome}. Tenho interesse em ${data.interesse}. Telefone: ${data.telefone}. ${data.mensagem||''}`;
+      navigator.clipboard?.writeText(texto);
+      toast('Contato salvo e mensagem copiada.');
+      e.target.reset();
+    });
+    function copyPresentation(){
+      const text = 'MK Solutions: tecnologia, automação e soluções digitais para empresas que precisam organizar processos, reduzir tarefas manuais, centralizar dados, criar dashboards, integrar sistemas e evoluir com inteligência artificial.';
+      navigator.clipboard?.writeText(text); toast('Resumo copiado.');
+    }
+  </script>
 </body>
 </html>
