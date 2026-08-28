@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#07111f">
+  <title>MK Solutions • Operação Last Mile</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="styles.css?v=1">
+</head>
+<body>
+<div class="app-shell">
+  <aside class="sidebar" id="sidebar">
+    <div class="brand"><div class="brand-mark">MK</div><div><strong>MK Solutions</strong><span>Operação Last Mile</span></div></div>
+    <nav id="nav"></nav>
+    <div class="sidebar-footer">Gestão operacional • apresentação ao vivo • v1.0</div>
+  </aside>
+  <main class="main">
+    <header class="topbar">
+      <button class="icon-btn mobile-only" id="menuBtn" aria-label="Abrir menu">☰</button>
+      <div class="title-wrap"><h1 id="pageTitle">Dashboard</h1><p id="pageSubtitle">Visão geral da operação</p></div>
+      <div class="top-actions">
+        <button class="ghost-btn" id="importBtn">⇧ Importar arquivo operacional</button>
+        <button class="primary-btn" id="newBtn">+ Novo Waybill</button>
+      </div>
+    </header>
+    <section class="content" id="content"></section>
+  </main>
+</div>
+<div class="overlay" id="overlay"></div>
+<div class="toast" id="toast"></div>
+
+<dialog id="wbDialog"><form id="wbForm">
+  <div class="dialog-head"><div><h2>Novo Waybill</h2><p>Registrar volume recebido no DS.</p></div><button type="button" class="icon-btn close">✕</button></div>
+  <div class="form-grid">
+    <label>Waybill<input name="waybill" required placeholder="WB000001"></label>
+    <label>Referência / Pedido<input name="referencia" placeholder="PED-0001"></label>
+    <label>Cliente<input name="cliente" required></label>
+    <label>Destinatário<input name="destinatario" required></label>
+    <label>Telefone<input name="telefone"></label>
+    <label>Prazo / SLA<input name="prazo" type="date" required></label>
+    <label>Base<select name="base" id="wbBase" required></select></label>
+    <label>Localidade<input name="localidade" placeholder="Bairro / cidade / região" required></label>
+    <label class="span-2">Endereço de entrega<input name="endereco" required></label>
+    <label>Cidade<input name="cidade" required></label>
+    <label>Volumes<input name="volumes" type="number" min="1" value="1"></label>
+  </div>
+  <div class="dialog-actions"><button type="button" class="ghost-btn close">Cancelar</button><button class="primary-btn">Receber no DS</button></div>
+</form></dialog>
+
+<dialog id="occDialog"><form id="occForm">
+  <input type="hidden" name="waybill">
+  <div class="dialog-head"><div><h2>Registrar ocorrência</h2><p id="occWb"></p></div><button type="button" class="icon-btn close-occ">✕</button></div>
+  <div class="form-grid">
+    <label>Tipo<select name="tipo"><option>Destinatário ausente</option><option>Endereço incorreto</option><option>Endereço não localizado</option><option>Recusa do destinatário</option><option>Estabelecimento fechado</option><option>Pacote avariado</option><option>Pacote não localizado</option><option>Área de risco</option><option>Outro</option></select></label>
+    <label>Próxima ação<select name="acao"><option>Nova tentativa</option><option>Devolução</option><option>Análise operacional</option></select></label>
+    <label class="span-2">Observação<textarea name="obs" rows="3"></textarea></label>
+  </div>
+  <div class="dialog-actions"><button type="button" class="ghost-btn close-occ">Cancelar</button><button class="primary-btn">Salvar ocorrência</button></div>
+</form></dialog>
+
+<dialog id="driverDialog"><form id="driverForm">
+  <input type="hidden" name="id">
+  <div class="dialog-head"><div><h2>Cadastro de motorista</h2><p>Dados operacionais e financeiros.</p></div><button type="button" class="icon-btn close-driver">✕</button></div>
+  <div class="form-grid">
+    <label>Nome completo<input name="nome" required></label>
+    <label>Telefone<input name="telefone" required></label>
+    <label>Data de nascimento<input name="nascimento" type="date" required></label>
+    <label>Rota desejada<input name="rota" placeholder="Ex.: Região Norte"></label>
+    <label>Valor por pacote (R$)<input name="valorPacote" type="number" step="0.01" min="0" required></label>
+    <label>Base atendida<select name="base" id="driverBase" required></select></label>
+    <label>Banco<input name="banco"></label>
+    <label>Agência<input name="agencia"></label>
+    <label>Conta<input name="conta"></label>
+    <label>Chave PIX<input name="pix"></label>
+    <label>Status<select name="status"><option>Ativo</option><option>Inativo</option><option>Bloqueado</option></select></label>
+    <label class="span-2">Observações<textarea name="obs" rows="2"></textarea></label>
+  </div>
+  <div class="dialog-actions"><button type="button" class="ghost-btn close-driver">Cancelar</button><button class="primary-btn">Salvar motorista</button></div>
+</form></dialog>
+
+<dialog id="expenseDialog"><form id="expenseForm">
+  <div class="dialog-head"><div><h2>Nova despesa / pagamento</h2><p>Registre os dados da despesa e da transação bancária.</p></div><button type="button" class="icon-btn close-expense">✕</button></div>
+  <div class="form-grid">
+    <label class="span-2">Descrição da despesa<input name="descricao" required></label>
+    <label>Valor (R$)<input name="valor" type="number" min="0" step="0.01" required></label>
+    <label>Data<input name="data" type="date" required></label>
+    <label>Horário<input name="horario" type="time"></label>
+    <label>Forma de pagamento<select name="pagamento"><option>PIX</option><option>Dinheiro</option><option>Cartão de débito</option><option>Cartão de crédito</option><option>Boleto</option><option>Transferência</option><option>Outro</option></select></label>
+    <label>Status do pagamento<select name="statusPagamento"><option>Aguardando aprovação</option><option>Pago</option><option>Agendado</option><option>Cancelado</option></select></label>
+    <label>Categoria<select name="categoria"><option>Combustível</option><option>Manutenção</option><option>Alimentação</option><option>Pedágio</option><option>Administrativo</option><option>Aluguel</option><option>Pagamento de motorista</option><option>Outros</option></select></label>
+    <label>Base<select name="base" id="expenseBase" required></select></label>
+    <label class="span-2 section-label">Quem vai receber</label>
+    <label>Nome / Beneficiário<input name="beneficiario"></label>
+    <label>CPF/CNPJ<input name="documento"></label>
+    <label>Instituição / Banco<input name="instituicao"></label>
+    <label>Agência<input name="agencia"></label>
+    <label>Conta<input name="conta"></label>
+    <label>Chave PIX<input name="pix"></label>
+    <label class="span-2 section-label">Quem vai pagar</label>
+    <label>Pagador<input name="pagador"></label>
+    <label>Responsável pelo lançamento<input name="responsavel"></label>
+    <label class="span-2">Observações<textarea name="obs" rows="2"></textarea></label>
+  </div>
+  <div class="dialog-actions"><button type="button" class="ghost-btn close-expense">Cancelar</button><button class="primary-btn">Salvar despesa</button></div>
+</form></dialog>
+
+<dialog id="userDialog"><form id="userForm">
+  <div class="dialog-head"><div><h2>Novo usuário</h2><p>Estrutura de acesso administrativo.</p></div><button type="button" class="icon-btn close-user">✕</button></div>
+  <div class="form-grid">
+    <label>Nome<input name="nome" required></label>
+    <label>E-mail<input name="email" type="email" required></label>
+    <label>Perfil<select name="perfil"><option>Super Admin</option><option>Dono / Admin</option><option>Operação</option><option>Financeiro</option><option>Consulta</option></select></label>
+    <label>Base<select name="base" id="userBase"><option value="Todas">Todas as bases</option></select></label>
+    <label>Status<select name="status"><option>Ativo</option><option>Inativo</option></select></label>
+  </div>
+  <div class="info-box">Versão de apresentação: o cadastro é local ao navegador. Login seguro e sincronização entre dispositivos entram na etapa de banco/autenticação.</div>
+  <div class="dialog-actions"><button type="button" class="ghost-btn close-user">Cancelar</button><button class="primary-btn">Salvar usuário</button></div>
+</form></dialog>
+
+<dialog id="baseDialog"><form id="baseForm">
+  <input type="hidden" name="id">
+  <div class="dialog-head"><div><h2>Base operacional</h2><p>Cadastre ou edite uma base.</p></div><button type="button" class="icon-btn close-base">✕</button></div>
+  <div class="form-grid"><label>Nome da base<input name="nome" required></label><label>Localidade<input name="localidade" required></label><label>Status<select name="status"><option>Ativa</option><option>Inativa</option></select></label></div>
+  <div class="dialog-actions"><button type="button" class="ghost-btn close-base">Cancelar</button><button class="primary-btn">Salvar base</button></div>
+</form></dialog>
+
+<input id="fileInput" type="file" accept=".csv,.xls,.xlsx,text/csv,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" hidden>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script src="app.js?v=1"></script>
+</body>
+</html>
