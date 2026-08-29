@@ -9,6 +9,16 @@
   <link rel="stylesheet" href="styles.css?v=1">
 </head>
 <body>
+<div id="loginScreen" style="position:fixed;inset:0;z-index:9999;background:radial-gradient(circle at 50% 20%,#0c3d69,#07111f 55%,#030810);display:none;place-items:center;padding:20px">
+  <form id="loginForm" style="width:min(430px,100%);background:#0a2038;border:1px solid #24506f;border-radius:24px;padding:32px;box-shadow:0 30px 80px #0008">
+    <div style="text-align:center;margin-bottom:24px"><div style="font-size:52px;font-weight:900;color:#159eff">MK</div><h1 style="margin:4px 0">Acesso por base</h1><p style="color:#a8bdd3">Entre para alimentar e visualizar somente sua operação.</p></div>
+    <label style="display:grid;gap:7px;margin-bottom:14px">Usuário<input id="loginUser" autocomplete="username" required placeholder="Ex.: base1"></label>
+    <label style="display:grid;gap:7px;margin-bottom:18px">Senha<input id="loginPassword" type="password" autocomplete="current-password" required></label>
+    <button class="primary-btn" style="width:100%;justify-content:center" type="submit">ENTRAR NO SISTEMA</button>
+    <p id="loginError" style="display:none;color:#ff8f8f;text-align:center;margin:14px 0 0">Usuário ou senha incorretos.</p>
+    <p style="color:#7890a8;text-align:center;font-size:12px;margin:18px 0 0">Acessos demonstrativos para apresentação.</p>
+  </form>
+</div>
 <div class="app-shell">
   <aside class="sidebar" id="sidebar">
     <div class="brand"><div class="brand-mark">MK</div><div><strong>MK Solutions</strong><span>Operação Last Mile</span></div></div>
@@ -20,8 +30,10 @@
       <button class="icon-btn mobile-only" id="menuBtn" aria-label="Abrir menu">☰</button>
       <div class="title-wrap"><h1 id="pageTitle">Dashboard</h1><p id="pageSubtitle">Visão geral da operação</p></div>
       <div class="top-actions">
+        <span id="accountBadge" style="color:#a8bdd3;font-size:13px"></span>
         <button class="ghost-btn" id="importBtn">⇧ Importar arquivo operacional</button>
         <button class="primary-btn" id="newBtn">+ Novo Waybill</button>
+        <button class="ghost-btn" id="logoutBtn">Sair</button>
       </div>
     </header>
     <section class="content" id="content"></section>
@@ -127,6 +139,6 @@
 
 <input id="fileInput" type="file" accept=".csv,.xls,.xlsx,text/csv,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" hidden>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
-<script src="app.js?v=1"></script>
+<script src="app.js?v=2"></script>
 </body>
 </html>

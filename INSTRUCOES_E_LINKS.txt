@@ -1,0 +1,59 @@
+MK SOLUTIONS — ARQUIVOS ATUALIZADOS
+
+SITE PUBLICADO
+https://22interliga.github.io/mk-solutions/
+
+REPOSITÓRIO DO PROJETO
+https://github.com/22interliga/mk-solutions
+
+ARQUIVO PRINCIPAL DO SITE
+index.html
+
+LOGO ORIGINAL UTILIZADA
+assets/mk-solutions-logo-original.jpeg
+
+ALTERAÇÃO PREPARADA
+- Substituição da logo textual do cabeçalho pela logo original da MK Solutions.
+- Animação inicial preservada.
+- Textos, cores, links e funções do site preservados.
+
+OBSERVAÇÃO
+O pacote contém a versão atualizada completa. Para a mudança aparecer no link
+publicado, estes arquivos devem ser enviados para a branch main do repositório.
+
+ACESSOS DEMONSTRATIVOS POR BASE
+
+Administrador Geral
+Usuário: admin
+Senha: MK@2026
+Visualização: todas as bases
+
+Gerente Operacional
+Usuário: gerente
+Senha: Gerente@2026
+Visualização: operação de todas as bases, sem administração de usuários e bases
+
+Base 1
+Usuário: base1
+Senha: Base1@2026
+
+Base 2
+Usuário: base2
+Senha: Base2@2026
+
+Base 3
+Usuário: base3
+Senha: Base3@2026
+
+Base 4
+Usuário: base4
+Senha: Base4@2026
+
+IMPORTANTE
+Esses acessos são demonstrativos e funcionam no navegador. A versão de produção
+deverá usar autenticação segura e banco de dados online.
+
+REGRAS DOS PERFIS
+- Usuário de base: alimenta e visualiza somente a própria base.
+- Gerente Operacional: acompanha todas as bases e seus indicadores operacionais.
+- Administrador: acesso completo, incluindo usuários, bases e configurações.
